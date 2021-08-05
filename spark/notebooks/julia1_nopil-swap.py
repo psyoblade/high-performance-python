@@ -13,7 +13,20 @@ def calculate_z_serial_purepython(maxiter, zs, cs):
         n = 0
         z = zs[i]
         c = cs[i]
-        while abs(z) < 2 and n < maxiter:
+        while n < maxiter and abs(z) < 2:
+            z = z * z + c
+            n += 1
+        output[i] = n
+    return output
+
+def swap_calculate_z_serial_purepython(maxiter, zs, cs):
+    """Calculate output list using Julia update rule"""
+    output = [0] * len(zs)
+    for i in range(len(zs)):
+        n = 0
+        z = zs[i]
+        c = cs[i]
+        while n < maxiter and abs(z) < 2:
             z = z * z + c
             n += 1
         output[i] = n
@@ -46,7 +59,8 @@ def calc_pure_python(draw_output, desired_width, max_iterations):
     print("Length of x:", len(x))
     print("Total elements:", len(zs))
     start_time = time.time()
-    output = calculate_z_serial_purepython(max_iterations, zs, cs)
+#     output = calculate_z_serial_purepython(max_iterations, zs, cs)
+    output = swap_calculate_z_serial_purepython(max_iterations, zs, cs)
     end_time = time.time()
     secs = end_time - start_time
     print(calculate_z_serial_purepython.__name__ + " took", secs, "seconds")
