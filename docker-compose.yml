@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  notebook:
-    container_name: notebook
+  highperf_notebook:
+    container_name: highperf_notebook
     user: root
     privileged: true
     image: psyoblade/data-engineer-notebook:1.4
@@ -12,10 +12,10 @@ services:
     environment:
       - GRANT_SUDO=yes
     ports:
-      - "4040:4040"
-      - "4041:4041"
-      - "8080:8080"
-      - "8888:8888"
+      - "14040:4040"
+      - "14041:4041"
+      - "18080:8080"
+      - "18888:8888"
 networks:
   default:
-    name: default_network
+    name: highperf_network
